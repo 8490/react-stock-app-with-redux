@@ -11,10 +11,13 @@ import { Formik, Form } from "formik";
 import TextField from "@mui/material/TextField";
 import { object, string } from "yup";
 import LoadingButton from "@mui/lab/LoadingButton";
+import useAuthCall from "../hooks/useAuthCall";
 
 const Login = () => {
   const navigate = useNavigate();
   const { currentUser, error, loading } = useSelector((state) => state?.auth);
+
+  const { login } = useAuthCall();
 
   const loginScheme = object({
     email: string()
@@ -72,6 +75,7 @@ const Login = () => {
             validationSchema={loginScheme}
             onSubmit={(values, actions) => {
               //TODO  login with values   POST  req,
+              login(values);
               //TODO navigate
               actions.resetForm();
               actions.setSubmitting(false);
