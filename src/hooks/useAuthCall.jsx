@@ -1,7 +1,13 @@
 import axios from "axios";
 import { useDispatch } from "react-redux";
-import { fetchFail, fetchStart, loginSuccess } from "../features/authSlice";
+import {
+  fetchFail,
+  fetchStart,
+  loginSuccess,
+  registerSuccess,
+} from "../features/authSlice";
 import { useNavigate } from "react-router-dom";
+import { toastErrorNotify, toastSuccessNotify } from "../helper/ToastNotify";
 
 const useAuthCall = () => {
   const dispatch = useDispatch();
@@ -17,15 +23,35 @@ const useAuthCall = () => {
         userInfo
       );
       dispatch(loginSuccess(data));
+      toastSuccessNotify("Login performed");
       navigate("/stock");
       console.log(data);
-      return data;
     } catch (error) {
       dispatch(fetchFail());
+      toastErrorNotify("Login can not be performed");
       console.log(error);
     }
   };
-  return { login };
+  const register = async (userInfo) => {
+    const BASE_URL = "http://10001.fullstack.clarusway.com/";
+
+    dispatch(fetchStart());
+
+    try {
+      const { data } = await axios.post(
+        `${BASE_URL}account/register/`,
+        userInfo
+      );
+      dispatch(registerSuccess(data));
+      toastSuccessNotify("Register performed");
+      navigate("/stock");
+    } catch (error) {
+      dispatch(fetchFail());
+      toastErrorNotify("Register can not be performed");
+      console.log(error);
+    }
+  };
+  return { login, register };
 };
 
 export default useAuthCall;
