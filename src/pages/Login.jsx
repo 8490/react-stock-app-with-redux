@@ -5,7 +5,7 @@ import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
 import LockIcon from "@mui/icons-material/Lock";
 import image from "../assets/result.svg";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { Formik, Form } from "formik";
 import TextField from "@mui/material/TextField";
@@ -14,8 +14,7 @@ import LoadingButton from "@mui/lab/LoadingButton";
 import useAuthCall from "../hooks/useAuthCall";
 
 const Login = () => {
-  const navigate = useNavigate();
-  const { currentUser, error, loading } = useSelector((state) => state?.auth);
+  const { loading } = useSelector((state) => state?.auth);
 
   const { login } = useAuthCall();
 
@@ -76,7 +75,6 @@ const Login = () => {
             onSubmit={(values, actions) => {
               //TODO  login with values   POST  req,
               login(values);
-              //TODO navigate
               actions.resetForm();
               actions.setSubmitting(false);
             }}
