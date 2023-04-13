@@ -4,6 +4,7 @@ import {
   fetchFail,
   fetchStart,
   loginSuccess,
+  logoutSuccess,
   registerSuccess,
 } from "../features/authSlice";
 import { useNavigate } from "react-router-dom";
@@ -32,6 +33,17 @@ const useAuthCall = () => {
       console.log(error);
     }
   };
+  const logout = async () => {
+    try {
+      dispatch(logoutSuccess());
+      toastSuccessNotify("Logout performed");
+      navigate("/");
+    } catch (error) {
+      dispatch(fetchFail());
+      toastErrorNotify("Logout can not be performed");
+      console.log(error);
+    }
+  };
   const register = async (userInfo) => {
     const BASE_URL = "http://10001.fullstack.clarusway.com/";
 
@@ -51,7 +63,7 @@ const useAuthCall = () => {
       console.log(error);
     }
   };
-  return { login, register };
+  return { login, logout, register };
 };
 
 export default useAuthCall;
