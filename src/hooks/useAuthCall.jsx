@@ -34,6 +34,7 @@ const useAuthCall = () => {
     }
   };
   const logout = async () => {
+    dispatch(fetchStart());
     try {
       dispatch(logoutSuccess());
       toastSuccessNotify("Logout performed");
