@@ -13,9 +13,8 @@ import { toastErrorNotify, toastSuccessNotify } from "../helper/ToastNotify";
 const useAuthCall = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const BASE_URL = "http://10001.fullstack.clarusway.com/";
   const login = async (userInfo) => {
-    const BASE_URL = "http://10001.fullstack.clarusway.com/";
-
     dispatch(fetchStart());
 
     try {
@@ -36,6 +35,7 @@ const useAuthCall = () => {
   const logout = async () => {
     dispatch(fetchStart());
     try {
+      await axios.post(`${BASE_URL}account/auth/logout/`);
       dispatch(logoutSuccess());
       toastSuccessNotify("Logout performed");
       navigate("/");
@@ -46,8 +46,6 @@ const useAuthCall = () => {
     }
   };
   const register = async (userInfo) => {
-    const BASE_URL = "http://10001.fullstack.clarusway.com/";
-
     dispatch(fetchStart());
 
     try {
