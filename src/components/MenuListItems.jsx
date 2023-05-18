@@ -14,8 +14,8 @@ import { useNavigate } from "react-router-dom";
 
 const icons = [
   {
-    icon: <DashboardIcon />,
     title: "Dashboard",
+    icon: <DashboardIcon />,
     url: "/stock/",
   },
   {
