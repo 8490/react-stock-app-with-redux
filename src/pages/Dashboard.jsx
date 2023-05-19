@@ -1,7 +1,7 @@
 import * as React from "react";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
-import { Button } from "@mui/material";
+import Button from "@mui/material/Button";
 import CssBaseline from "@mui/material/CssBaseline";
 import Divider from "@mui/material/Divider";
 import Drawer from "@mui/material/Drawer";
@@ -13,6 +13,7 @@ import MenuListItems from "../components/MenuListItems";
 import { useSelector } from "react-redux";
 import useAuthCall from "../hooks/useAuthCall";
 import { Outlet } from "react-router-dom";
+import { blueGrey } from "@mui/material/colors";
 
 const drawerWidth = 200;
 
@@ -61,12 +62,9 @@ function Dashboard(props) {
             Stock App
           </Typography>
           {currentUser && (
-            <div>
-              <span>{currentUser}</span>
-              <Button color="inherit" onClick={() => logout()}>
-                Logout
-              </Button>
-            </div>
+            <Button color="inherit" onClick={() => logout()}>
+              Logout
+            </Button>
           )}
         </Toolbar>
       </AppBar>
@@ -89,6 +87,8 @@ function Dashboard(props) {
             "& .MuiDrawer-paper": {
               boxSizing: "border-box",
               width: drawerWidth,
+              backgroundColor: blueGrey[900],
+              color: "white",
             },
           }}
         >
@@ -101,6 +101,8 @@ function Dashboard(props) {
             "& .MuiDrawer-paper": {
               boxSizing: "border-box",
               width: drawerWidth,
+              backgroundColor: blueGrey[900],
+              color: "white",
             },
           }}
           open
@@ -124,31 +126,3 @@ function Dashboard(props) {
 }
 
 export default Dashboard;
-
-// function Dashboard() {
-//   const { currentUser } = useSelector((state) => state.auth);
-//   console.log(currentUser);
-
-//   const { logout } = useAuthCall();
-
-//   return (
-//     <Box sx={{ display: "flex" }}>
-//       <CssBaseline />
-//       <AppBar position="fixed">
-//         <Toolbar>
-//           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-//             STOCK APP
-//           </Typography>
-//           {currentUser && (
-//             <div>
-//               <span>{currentUser}</span>
-//               <Button color="inherit" onClick={() => logout()}>
-//                 Logout
-//               </Button>
-//             </div>
-//           )}
-//         </Toolbar>
-//       </AppBar>
-//     </Box>
-//   );
-// }
