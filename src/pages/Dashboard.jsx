@@ -1,7 +1,7 @@
 import * as React from "react";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
-import Button from "@mui/material/Button";
+import { Button } from "@mui/material";
 import CssBaseline from "@mui/material/CssBaseline";
 import Divider from "@mui/material/Divider";
 import Drawer from "@mui/material/Drawer";
@@ -62,9 +62,12 @@ function Dashboard(props) {
             Stock App
           </Typography>
           {currentUser && (
-            <Button color="inherit" onClick={() => logout()}>
-              Logout
-            </Button>
+            <div>
+              <span>{currentUser}</span>
+              <Button color="inherit" onClick={() => logout()}>
+                Logout
+              </Button>
+            </div>
           )}
         </Toolbar>
       </AppBar>
@@ -124,3 +127,31 @@ function Dashboard(props) {
 }
 
 export default Dashboard;
+
+// function Dashboard() {
+//   const { currentUser } = useSelector((state) => state.auth);
+//   console.log(currentUser);
+
+//   const { logout } = useAuthCall();
+
+//   return (
+//     <Box sx={{ display: "flex" }}>
+//       <CssBaseline />
+//       <AppBar position="fixed">
+//         <Toolbar>
+//           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+//             STOCK APP
+//           </Typography>
+//           {currentUser && (
+//             <div>
+//               <span>{currentUser}</span>
+//               <Button color="inherit" onClick={() => logout()}>
+//                 Logout
+//               </Button>
+//             </div>
+//           )}
+//         </Toolbar>
+//       </AppBar>
+//     </Box>
+//   );
+// }
