@@ -42,7 +42,7 @@ const Firms = () => {
   console.log(firms);
   return (
     <div>
-      <Typography variant="h4" color="error">
+      <Typography variant="h4" color="error" sx={{ mb: 2 }}>
         Firm
       </Typography>
       <Button variant="contained" sx={{ mb: 2 }} onClick={handleOpen}>
