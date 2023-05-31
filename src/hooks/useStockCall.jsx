@@ -44,6 +44,18 @@ const useStockCall = () => {
       toastErrorNotify(`${url} can not be posted`);
     }
   };
+  const putStockData = async (url, info) => {
+    dispatch(fetchStart());
+    try {
+      await axiosWithToken.put(`stock/${url}/${info.id}/`, info);
+      toastSuccessNotify(`${url} successfully updated`);
+      getStockData(url);
+    } catch (error) {
+      console.log(error);
+      dispatch(fetchFail());
+      toastErrorNotify(`${url} can not be updated`);
+    }
+  };
 
   //   const getStockData = async (url) => {
   //     const BASE_URL = "http://10001.fullstack.clarusway.com/";
@@ -75,7 +87,7 @@ const useStockCall = () => {
   //     }
   //   };
 
-  return { getStockData, deleteStockData, postStockData };
+  return { getStockData, deleteStockData, postStockData, putStockData };
 };
 
 export default useStockCall;
