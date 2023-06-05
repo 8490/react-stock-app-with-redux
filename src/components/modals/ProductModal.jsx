@@ -6,7 +6,7 @@ import { modalStyle } from "../../styles/globalStyles";
 import { TextField } from "@mui/material";
 import useStockCall from "../../hooks/useStockCall";
 
-export default function FirmModal({ open, handleClose, info, setInfo }) {
+export default function ProductModal({ open, handleClose, info, setInfo }) {
   // const [info, setInfo] = useState({
   //   name: "",
   //   phone: "",
@@ -24,9 +24,9 @@ export default function FirmModal({ open, handleClose, info, setInfo }) {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (info.id) {
-      putStockData("firms", info);
+      putStockData("products", info);
     } else {
-      postStockData("firms", info);
+      postStockData("products", info);
     }
 
     handleClose();

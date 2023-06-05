@@ -4,13 +4,13 @@ import { useEffect, useState } from "react";
 import useStockCall from "../hooks/useStockCall";
 import { useSelector } from "react-redux";
 import { Grid } from "@mui/material";
-import FirmCard from "../components/FirmCard";
 import { flex } from "../styles/globalStyles";
-import FirmModal from "../components/modals/FirmModal";
+import ProductModal from "../components/modals/ProductModal";
+import ProductCard from "../components/ProductCard";
 
 const Products = () => {
   const { getStockData } = useStockCall();
-  const { firms } = useSelector((state) => state.stock);
+  const { products } = useSelector((state) => state.stock);
   const [open, setOpen] = useState(false);
 
   const [info, setInfo] = useState({
@@ -24,29 +24,33 @@ const Products = () => {
   const handleClose = () => setOpen(false);
 
   useEffect(() => {
-    getStockData("firms");
+    getStockData("products");
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-  console.log(firms);
+  // console.log(products);
   return (
     <div>
       <Typography variant="h4" color="error" sx={{ mb: 2 }}>
-        Firms
+        Products
       </Typography>
       <Button variant="contained" sx={{ mb: 2 }} onClick={handleOpen}>
-        New Firm
+        New Product
       </Button>
 
-      <FirmModal
+      <ProductModal
         open={open}
         handleClose={handleClose}
         info={info}
         setInfo={setInfo}
       />
       <Grid container sx={flex}>
-        {firms?.map((firm) => (
-          <Grid item key={firm.id}>
-            <FirmCard firm={firm} setOpen={setOpen} setInfo={setInfo} />
+        {products?.map((product) => (
+          <Grid item key={product.id}>
+            <ProductCard
+              product={product}
+              setOpen={setOpen}
+              setInfo={setInfo}
+            />
           </Grid>
         ))}
       </Grid>
