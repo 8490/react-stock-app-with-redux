@@ -52,7 +52,7 @@ export default function BrandModal({ open, handleClose, info, setInfo }) {
             <TextField
               label="Brand Name"
               name="name"
-              id="email"
+              id="name"
               type="text"
               variant="outlined"
               required
@@ -71,7 +71,7 @@ export default function BrandModal({ open, handleClose, info, setInfo }) {
               onChange={handleChange}
             />
             <Button type="submit" variant="contained">
-              Submit Firm
+              Submit Brand
             </Button>
           </Box>
         </Box>

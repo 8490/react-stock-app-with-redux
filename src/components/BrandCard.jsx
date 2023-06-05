@@ -46,7 +46,7 @@ export default function BrandCard({ brand, setOpen, setInfo }) {
         />
         <DeleteOutlineIcon
           sx={btnStyle}
-          onClick={() => deleteStockData("firms", brand.id)}
+          onClick={() => deleteStockData("brands", brand.id)}
         />
       </CardActions>
     </Card>
