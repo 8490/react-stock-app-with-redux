@@ -6,7 +6,13 @@ import { modalStyle } from "../../styles/globalStyles";
 import { TextField } from "@mui/material";
 import useStockCall from "../../hooks/useStockCall";
 
-export default function BrandModal({ open, handleClose, info, setInfo }) {
+export default function BrandModal({
+  open,
+  handleClose,
+  setOpen,
+  info,
+  setInfo,
+}) {
   // const [info, setInfo] = useState({
   //   name: "",
   //   phone: "",

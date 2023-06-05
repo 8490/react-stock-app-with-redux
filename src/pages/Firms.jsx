@@ -46,12 +46,13 @@ const Firms = () => {
 
   useEffect(() => {
     getStockData("firms");
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   console.log(firms);
   return (
     <div>
       <Typography variant="h4" color="error" sx={{ mb: 2 }}>
-        Firm
+        Firms
       </Typography>
       <Button variant="contained" sx={{ mb: 2 }} onClick={handleOpen}>
         New Firm
