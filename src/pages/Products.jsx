@@ -55,11 +55,12 @@ const Products = () => {
         <Table sx={{ minWidth: 650 }} aria-label="simple table">
           <TableHead>
             <TableRow>
-              <TableCell>#</TableCell>
+              <TableCell align="right">#</TableCell>
               <TableCell align="right">Category</TableCell>
               <TableCell align="right">Brand</TableCell>
-              <TableCell align="right">Carbs&nbsp;(g)</TableCell>
-              <TableCell align="right">Protein&nbsp;(g)</TableCell>
+              <TableCell align="right">Name</TableCell>
+              <TableCell align="right">Stock</TableCell>
+              <TableCell align="right">Operation</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
@@ -68,13 +69,14 @@ const Products = () => {
                 key={product.id}
                 sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
               >
-                <TableCell component="th" scope="row">
+                <TableCell component="th" scope="row" align="right">
                   {index + 1}
                 </TableCell>
-                <TableCell align="right">{product.calories}</TableCell>
-                <TableCell align="right">{product.fat}</TableCell>
-                <TableCell align="right">{product.carbs}</TableCell>
-                <TableCell align="right">{product.protein}</TableCell>
+                <TableCell align="right">{product.category}</TableCell>
+                <TableCell align="right">{product.brand}</TableCell>
+                <TableCell align="right">{product.name}</TableCell>
+                <TableCell align="right">{product.stock}</TableCell>
+                <TableCell align="right">#</TableCell>
               </TableRow>
             ))}
           </TableBody>
