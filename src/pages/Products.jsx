@@ -20,6 +20,7 @@ import {
   DataGrid,
   GridActionsCellItem,
   GridColDef,
+  GridToolbar,
   GridValueGetterParams,
 } from "@mui/x-data-grid";
 import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
@@ -88,16 +89,14 @@ const Products = () => {
       align: "center",
       minWidth: 50,
       flex: 1,
-      renderCell: ({ id }) => {
-        return (
-          <GridActionsCellItem
-            icon={<DeleteForeverIcon />}
-            label="Delete"
-            sx={btnStyle}
-            onClick={() => deleteStockData("products", id)}
-          />
-        );
-      },
+      renderCell: ({ id }) => (
+        <GridActionsCellItem
+          icon={<DeleteForeverIcon />}
+          label="Delete"
+          sx={btnStyle}
+          onClick={() => deleteStockData("products", id)}
+        />
+      ),
     },
   ];
 
@@ -136,6 +135,7 @@ const Products = () => {
           }}
           pageSizeOptions={[5]}
           disableRowSelectionOnClick
+          slots={{ toolbar: GridToolbar }}
         />
       </Box>
     </div>
