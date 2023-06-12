@@ -102,6 +102,8 @@ const Products = () => {
 
   useEffect(() => {
     getStockData("products");
+    getStockData("categories");
+    getStockData("brands");
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   // console.log(products);
