@@ -57,72 +57,51 @@ export default function ProductModal({ open, handleClose, info, setInfo }) {
               <Select
                 labelId="category"
                 id="category"
+                name="category_id"
                 value={info?.category_id}
                 label="Category"
                 onChange={handleChange}
               >
                 {categories?.map((item) => (
-                  <MenuItem key={item.id} value={10}>
+                  <MenuItem key={item.id} value={item.id}>
                     {item.name}
                   </MenuItem>
                 ))}
               </Select>
             </FormControl>
             <FormControl fullWidth>
-              <InputLabel id="demo-simple-select-label">Brands</InputLabel>
+              <InputLabel variant="outlined" id="brand-select">
+                Brands
+              </InputLabel>
               <Select
-                labelId="brands"
-                id="brands"
-                value={""}
-                label="Brands"
+                labelId="brand-select"
+                label="Brand"
+                id="brand-select"
+                name="brand_id"
+                value={info?.brand_id}
                 onChange={handleChange}
+                required
               >
-                {brands?.map((item) => (
-                  <MenuItem key={item.id} value={10}>
-                    {item.brand}
-                  </MenuItem>
-                ))}
+                {brands?.map((brand) => {
+                  return (
+                    <MenuItem key={brand.id} value={brand.id}>
+                      {brand.name}
+                    </MenuItem>
+                  );
+                })}
               </Select>
             </FormControl>
+
             <TextField
-              label="Firm Name"
+              margin="dense"
+              label="Product Name"
               name="name"
-              id="email"
+              id="name"
               type="text"
               variant="outlined"
-              required
               value={info?.name}
               onChange={handleChange}
-            />
-            <TextField
-              label="Phone"
-              name="phone"
-              id="phone"
-              type="tel"
-              variant="outlined"
               required
-              value={info?.phone}
-              onChange={handleChange}
-            />
-            <TextField
-              label="Address"
-              name="address"
-              id="address"
-              type="text"
-              variant="outlined"
-              required
-              value={info?.address}
-              onChange={handleChange}
-            />
-            <TextField
-              label="Image"
-              name="image"
-              id="image"
-              type="url"
-              variant="outlined"
-              required
-              value={info?.image}
-              onChange={handleChange}
             />
             <Button type="submit" variant="contained">
               Submit Firm

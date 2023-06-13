@@ -27,21 +27,20 @@ import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 import { btnStyle } from "../styles/globalStyles";
 
 const Products = () => {
-  const { getStockData, deleteStockData } = useStockCall();
+  const { getStockData, deleteStockData, getProCatBrand } = useStockCall();
   const { products } = useSelector((state) => state.stock);
   const [open, setOpen] = useState(false);
 
   const [info, setInfo] = useState({
+    category_id: "",
+    brand_id: "",
     name: "",
-    phone: "",
-    address: "",
-    image: "",
   });
 
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
-  const columns: GridColDef[] = [
+  const columns = [
     {
       field: "id",
       headerName: "#",
@@ -101,9 +100,11 @@ const Products = () => {
   ];
 
   useEffect(() => {
-    getStockData("products");
-    getStockData("categories");
-    getStockData("brands");
+    // getStockData("products");
+    // getStockData("categories");
+    // getStockData("brands");
+    //! Promise All
+    getProCatBrand();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   // console.log(products);

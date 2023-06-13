@@ -1,5 +1,10 @@
 import { useDispatch } from "react-redux";
-import { fetchFail, fetchStart, getSuccess } from "../features/stockSlice";
+import {
+  fetchFail,
+  fetchStart,
+  getSuccess,
+  getProCatBrandSuccess,
+} from "../features/stockSlice";
 import useAxios from "./useAxios";
 import { toastErrorNotify, toastSuccessNotify } from "../helper/ToastNotify";
 
@@ -57,6 +62,25 @@ const useStockCall = () => {
     }
   };
 
+  const getProCatBrand = async () => {
+    dispatch(fetchStart());
+    try {
+      const [products, categories, brands] = await Promise.all([
+        axiosWithToken.get("stock/products/"),
+        axiosWithToken.get("stock/categories/"),
+        axiosWithToken.get("stock/brands/"),
+      ]);
+
+      dispatch(
+        getProCatBrandSuccess([products?.data, categories?.data, brands?.data])
+      );
+    } catch (error) {
+      console.log(error);
+      dispatch(fetchFail());
+      toastErrorNotify(`Data can not be fetched`);
+    }
+  };
+
   //   const getStockData = async (url) => {
   //     const BASE_URL = "http://10001.fullstack.clarusway.com/";
 
@@ -87,7 +111,13 @@ const useStockCall = () => {
   //     }
   //   };
 
-  return { getStockData, deleteStockData, postStockData, putStockData };
+  return {
+    getStockData,
+    deleteStockData,
+    postStockData,
+    putStockData,
+    getProCatBrand,
+  };
 };
 
 export default useStockCall;
