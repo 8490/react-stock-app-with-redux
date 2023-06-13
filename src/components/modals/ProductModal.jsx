@@ -20,7 +20,7 @@ export default function ProductModal({ open, handleClose, info, setInfo }) {
   // });
 
   const { postStockData } = useStockCall();
-  const { categories } = useSelector((state) => state.stock);
+  const { categories, brands } = useSelector((state) => state.stock);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -33,7 +33,7 @@ export default function ProductModal({ open, handleClose, info, setInfo }) {
     postStockData("products", info);
 
     handleClose();
-    setInfo({ name: "", phone: "", address: "", image: "" });
+    setInfo({ category_id: "", brand_id: "", name: "" });
   };
   return (
     <div>
@@ -41,7 +41,7 @@ export default function ProductModal({ open, handleClose, info, setInfo }) {
         open={open}
         onClose={() => {
           handleClose();
-          setInfo({ name: "", phone: "", address: "", image: "" });
+          setInfo({ category_id: "", brand_id: "", name: "" });
         }}
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
@@ -57,12 +57,30 @@ export default function ProductModal({ open, handleClose, info, setInfo }) {
               <Select
                 labelId="category"
                 id="category"
-                value={""}
+                value={info?.category_id}
                 label="Category"
                 onChange={handleChange}
               >
                 {categories?.map((item) => (
-                  <MenuItem value={10}>{item.name}</MenuItem>
+                  <MenuItem key={item.id} value={10}>
+                    {item.name}
+                  </MenuItem>
+                ))}
+              </Select>
+            </FormControl>
+            <FormControl fullWidth>
+              <InputLabel id="demo-simple-select-label">Brands</InputLabel>
+              <Select
+                labelId="brands"
+                id="brands"
+                value={""}
+                label="Brands"
+                onChange={handleChange}
+              >
+                {brands?.map((item) => (
+                  <MenuItem key={item.id} value={10}>
+                    {item.brand}
+                  </MenuItem>
                 ))}
               </Select>
             </FormControl>
